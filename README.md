@@ -14,7 +14,11 @@ A Python web application has been created using Flask that allows users to searc
 *Source: Visualmodo*
 
 ## Installation
-```pip install google-api-python-client```
+To interact with the YouTube API from the Flask application, we need the **google-api-python-client library**.
+
+```
+pip install google-api-python-client
+```
 
 ## Getting an API key
 Firstly sign in here **[Google Cloud Platform](https://console.cloud.google.com/)** with your google account. Click on **select a project** and then click **New Project**.

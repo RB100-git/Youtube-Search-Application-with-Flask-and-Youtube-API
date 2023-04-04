@@ -41,3 +41,20 @@ where you you have to select credential type as **Youtube Data API V3** and chec
 ## Project Execution
 ![image](https://user-images.githubusercontent.com/102472369/229835736-047504de-c3e8-4b27-bdf4-7373c3c65b67.png)
 
+## Summary
+
+The application has three routes:
+
+The first route is the home page, which displays the index.html template(with main.css file).
+The second route is the search results page, which is the output page, displays the result.html template(with style.css file).
+The third route is the download file page, which helps to download the relevant informations in a CSV format.
+
+When the user enters a search query on the home page and submits the form, the search results page is loaded with the search results based on the user's query.
+
+The code first stores the API Informations of Youtube API V3(such as service name, version and API Key).The **build** function from google api client Construct a Resource for interacting with an API. Then we have created an instance of the Flask class and sets the template and static folders. Then, it defines the three routes using the @app.route decorator. 
+
+In the code, I have used **while loop**. Without the while loop, the code would just make a single request to get the first page of results and return whatever videos are returned in that one request. We have nextpagetoken to get unique results or a new set of results everytime the API make requests.
+
+The code then retrieves the video statistics and content details for each video in the search results and stores the relevant information (video ID, title, channel name, views, likes, duration, and published datetime) in a dictionary called 'info'. It keeps making API requests using nextPageToken to get the next page of results until it has collected at least 50 videos.If we don't use the nextPageToken to iterate through the pages and the API returns fewer than 50 results, the code will not enter the while loop and will continue to execute the remaining code. Though the API has no expiration but it has a limited quota usage. The quota allocation for everyone is of 10,000 units per day. The consumption of this units is based on the methods you execute and the result size does not matter(the parameter maxresults is basically the maximum number of items per query, which is 50 and by default 5).
+
+Finally, the code renders the result.html template, passing in the 'info' dictionary as a parameter to be used for displaying the search results.

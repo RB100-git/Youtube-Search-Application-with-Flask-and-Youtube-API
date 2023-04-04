@@ -1,0 +1,34 @@
+{% if info %}
+<table>
+  <caption style="font-size: 28px; font-weight: bold; text-decoration: underline;">Available Youtube Resources</caption>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div class="btn-container">
+  <a href="{{ url_for('download_file') }}" class="btn"><i class="fa fa-download"></i> Download</a>
+  </div>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='Result.css') }}" type="text/css" media="screen">
+  <tr>
+    <th>Video URL</th>
+    <th>Title</th>
+    <th>Channel Name</th>
+    <th>Views</th>
+    <th>Likes</th>
+    <th>Duration</th>
+    <th>Published Date</th>
+  </tr>
+  {% for index in range(info['id']|length) %}
+  <tr>
+    <td><a href="https://www.youtube.com/watch?v={{info['id'][index]}}">{{info['id'][index]}}</a></td>
+    <td>{{info['title'][index]}}</td>
+    <td>{{info['channelTitle'][index]}}</td>
+    <td>{{info['views'][index]}}</td>
+    <td>{{info['likes'][index]}} </td>
+    <td>{{info['duration'][index]}}</td>
+    <td>{{info['datetime'][index]}} </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+  <p>No search results found. Please try a different search query.</p>
+{% endif %}

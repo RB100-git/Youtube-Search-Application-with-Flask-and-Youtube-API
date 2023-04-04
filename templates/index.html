@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Title</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css" media="screen">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: rgb(240, 248, 255);
+            font-size: 1.2em;
+        }
+
+        h2 {
+            font-family: Helvetica, sans-serif;
+            font-size: 2.0em;
+            font-weight: bold;
+            color: rgb(240, 248, 255);
+            margin-bottom: 20px;
+        }
+
+        .form-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+
+        form {
+            width: 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="form-wrapper">
+        <form action="{{ url_for('index') }}" method="POST">
+            <h2>Welcome! Here's your assistant!</h2>
+
+            <p>
+                <label>Which topic are you looking for? :</label>
+                <input type="text" name="topic" style="width: 210px; height: 19px;">
+            </p>
+
+            <p style="text-align: center;">
+                <button type="submit" style="font-size: 1.0em; padding: 5px; background-color: green; color: white;">search</button>
+            </p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+body {
+background-color: #DEB887;
+}
+
+
+.btn-container {
+  text-align: right;
+}
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.btn:hover {
+  background-color: RoyalBlue;
+}

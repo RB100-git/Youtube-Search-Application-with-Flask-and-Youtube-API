@@ -29,7 +29,8 @@ def index():
                 return render_template('index.html')
 
             nextPageToken = None
-            info = {'id':[],'title':[],'channelTitle':[],'views':[],'likes':[],'duration':[],'datetime':[]}
+            # create a dictionary to store the informations
+            info = {'id':[],'title':[],'channelTitle':[],'views':[],'likes':[],'duration':[],'datetime':[]}  
 
             while len(info['id']) < 50:
                 request_yt = youtube.search().list(part="id,snippet",
@@ -41,10 +42,8 @@ def index():
                                                 pageToken=nextPageToken).execute()
 
                 for item in request_yt['items']:
-                    # Getting the id
                     if 'videoId' in item['id']:
                         vidId = item['id']['videoId']
-                    # Getting stats of the video
                         r = youtube.videos().list(part="statistics,contentDetails",
                                                   id=vidId,
                                                   fields="items(statistics," + "contentDetails(duration))").execute()
@@ -72,7 +71,7 @@ def index():
                         else:
                             info['likes'].append('')
                         if 'duration' in video_info['contentDetails']:
-                            info['duration'].append(video_info['contentDetails']['duration'].replace('PT', ''))
+                            info['duration'].append(video_info['contentDetails']['duration'].replace('PT', ''))   
                         else:
                             info['duration'].append('')
                         if 'publishedAt' in item['snippet']:
@@ -89,7 +88,7 @@ def index():
             pd.DataFrame(data=info).to_csv("info.csv", index=False)
             return render_template('result.html', info=info)
         except Exception as e:
-            print('The Exception message is: ', e)
+            print('The Error message is: ', e)
             return 'something is wrong'
     else:
         return render_template('index.html')
